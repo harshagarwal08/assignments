@@ -4,7 +4,16 @@
 */
 
 function isPalindrome(str) {
-  return true;
+  const cleanedStr = str.replace(/[\W_]/g, "").toLowerCase();
+  let isPal = true;
+
+  for (let i = 0; i < Math.floor(cleanedStr.length / 2); i++) {
+    if (cleanedStr[i] !== cleanedStr[cleanedStr.length - 1 - i]) {
+      isPal = false;
+      break;
+    }
+  }
+  return isPal;
 }
 
 module.exports = isPalindrome;
