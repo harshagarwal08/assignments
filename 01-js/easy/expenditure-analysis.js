@@ -6,7 +6,22 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+  let categoryWiseList = [];
+  transactions?.forEach((transaction) => {
+    const categoryIndex = categoryWiseList.findIndex(
+      (item) => item.category === transaction.category
+    );
+    if (categoryIndex === -1) {
+      categoryWiseList.push({
+        category: transaction.category,
+        totalSpent: transaction.price,
+      });
+    } else {
+      categoryWiseList[categoryIndex].totalSpent += transaction.price;
+    }
+  });
+
+  return categoryWiseList;
 }
 
 module.exports = calculateTotalSpentByCategory;
